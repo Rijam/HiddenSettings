@@ -1,0 +1,9 @@
+displayName = Hidden Settings
+author = Rijam
+version = 0.1
+buildIgnore = .vs\*, obj\*, bin\*, *.xcf, .git\*, git\*, Effects\fxcompiler
+homepage = https://github.com/Rijam/
+hideCode = false
+hideResources = false
+includeSource = true
+side = Client

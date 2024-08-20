@@ -1,0 +1,566 @@
+Configs: {
+	HiddenSettingsConfig: {
+		DisplayName: Hidden Settings Config
+
+		Headers: {
+			UsuallyOnlyAvailableInGame: Usually Only Available In Game
+			UsuallyOnlyAvailableOnMainMenu: Usually Only Available On Main Menu
+			HiddenOptions: Hidden Options
+		}
+
+		SmartDoors: {
+			Label: Smart Doors
+			Tooltip:
+				'''
+				Changes if doors will open automatically when walking into the door.
+
+				Default value: EnabledForEverything
+				'''
+		}
+
+		Autofire: {
+			Label: Autofire
+			Tooltip:
+				'''
+				Enables auto reuse on all items.
+
+				Default value: Off
+				'''
+		}
+
+		Zoom: {
+			Label: Zoom
+			Tooltip:
+				'''
+				The zoom of the game world.
+
+				Range: 100 - 200
+				Default value: 100
+				'''
+		}
+
+		UIScale: {
+			Label: UI Scale
+			Tooltip:
+				'''
+				The scale of the User Interface.
+				Vanilla limits the sizes to 50% to 200%.
+
+				Make sure you save this config to have the changes take effect.
+				If you get stuck with the menu falling off of the screen,
+				try pressing Escape or your inventory button.
+
+				Range: 25 - 200
+				Default value: 100
+				'''
+		}
+
+		MapScale: {
+			Label: Map Scale
+			Tooltip:
+				'''
+				The scale of the minimap.
+				Vanilla limits the sizes to 50% to 100%.
+
+				Range: 10 - 300
+				Default value: 100
+				'''
+		}
+
+		Map: {
+			Label: Map
+			Tooltip:
+				'''
+				Enables the minimap and fullscreen map.
+				Disabling the map will prevent you from teleporting with Pylons or Wormhole potions.
+
+				Default value: On
+				'''
+		}
+
+		HoverTextBoxes: {
+			Label: Hover Text Boxes
+			Tooltip:
+				'''
+				Toggles the dark background behind tooltips and other similar text.
+
+				Default value: On
+				'''
+		}
+
+		HeatDistortion: {
+			Label: Heat Distortion
+			Tooltip:
+				'''
+				Toggles the distortion effect to the screen while in the Desert and Underworld.
+
+				Default value: On
+				'''
+		}
+
+		StormEffects: {
+			Label: Storm Effects
+			Tooltip:
+				'''
+				Toggles the screen effects seen during a Blizzard or Sandstorm.
+
+				Disabling this may increase performance on low end systems.
+
+				Default value: On
+				'''
+		}
+
+		WavesQuality: {
+			Label: Waves Quality
+			Tooltip:
+				'''
+				Effects how complex the ripples are in water when something enters it.
+				Low: Passive water distortion; nothing really interacts with it.
+				Medium: Players and most things create ripples as they pass through water.
+				High: Projectiles also create ripples and ripples can bounce off walls.
+
+				This setting has no effect under Retro or Trippy lighting.
+
+				Default value: High
+				'''
+		}
+
+		HoverControls: {
+			Label: Hover Controls
+			Tooltip:
+				'''
+				When set to Hold, the player has to hold Down and Jump to use their wings' hover ability.
+				When set to Click, hovering is enabled by pressing Down, and disabled by pressing Up while flying.
+
+				Default: Hold
+				'''
+		}
+
+		# Main Menu
+		
+		Passwords: {
+			Label: Passwords
+			Tooltip:
+				'''
+				Display server passwords in plain text or as asterisks *
+
+				Default value: Visible
+				'''
+		}
+
+		BorderlessWindow: {
+			Label: Borderless Window
+			Tooltip:
+				'''
+				Sets the window resolution to the native desktop as well as removing the title bar and window frame.
+				This setting can be useful when using and switching between multiple monitors.
+
+				tModLoader runs the game differently than vanilla, so Borderless Window may have no noticeable effect.
+
+				Default value: Disabled
+				'''
+		}
+
+		MinersWobble: {
+			Label: Miners Wobble
+			Tooltip:
+				'''
+				Blocks will briefly grow and shrink in size while being mined.
+
+				Default value: On
+				'''
+		}
+
+		QuickTrash: {
+			Label: Quick Trash
+			Tooltip:
+				'''
+				Whether Quick Trashing is enabled and which key is used for it.
+
+				Default value: Left Control
+				'''
+		}
+
+		AttackSpeedEffectTooltips: {
+			Label: Attack Speed Effect Tooltips
+			Tooltip:
+				'''
+				A tModLoader setting to add an additional tooltip line to items
+				stating whether that item is affected by attack speed bonus.
+
+				Default value: Hidden
+				'''
+		}
+
+		RemoveForcedMinimumZoom: {
+			Label: Remove Forced Minimum Zoom
+			Tooltip:
+				'''
+				A tModLoader setting that changes the restrictions on the Zoom and UIScale settings based on your resolution.
+				This will have an impact on monitors with very high resolutions or aspect ratios other than 16:9.
+
+				Default value: Off
+				'''
+		}
+
+		# Hidden Options
+		
+		UseExperimentalFeatures: {
+			Label: Use Experimental Features
+			Tooltip:
+				'''
+				Unused in vanilla
+				This setting was used to enable resource packs in 1.3.5
+
+				Default value: Off
+				'''
+		}
+
+		UseSmartCursorForCommonBlocks: {
+			Label: Use Smart Cursor For Common Blocks
+			Tooltip:
+				'''
+				When this is set to true, Smart Cursor will activate even for common block types
+				(1.2.4's smart block placement will be re-enabled).
+
+				Default value: Off
+				'''
+		}
+
+		SettingsUnlock_WorldEvil: {
+			Label: Unlocked World Evil
+			Tooltip:
+				'''
+				Unused in vanilla
+				Prior to 1.4, the Wall of Flesh needed to be defeated at least once
+				in order to choose which world evil you wanted to generate a world with.
+
+				Default value: Off
+				'''
+		}
+
+		UnlockMusicSwap: {
+			Label: Unlocked Otherworldly Music Swap
+			Tooltip:
+				'''
+				Determines whether the player can toggle Otherworldly music tracks at the Party Girl.
+				Set to true when entering a Drunk World.
+
+				Default value: Off
+				'''
+		}
+
+		MultiplayerNPCSmoothingRange: {
+			Label: Multiplayer NPC Smoothing Range
+			Tooltip:
+				'''
+				Smooths NPC movement within a pixel range in multiplayer.
+
+				Default value: 300
+				'''
+		}
+
+		TeamNameplateDistance: {
+			Label: Team Nameplate Distance
+			Tooltip:
+				'''
+				The distance (in pixels) at which team nameplates in multiplayer start rendering.
+				If set to 0 or below, they will stop rendering entirely.
+
+				Default value: 2000
+				'''
+		}
+
+		WaterfallDrawLimit: {
+			Label: Waterfall Draw Limit
+			Tooltip:
+				'''
+				The height (in pixels) that a waterfall can draw.
+
+				Default value: 1000
+				'''
+		}
+
+		DisableIntenseVisualEffects: {
+			Label: Disable Intense Visual Effects
+			Tooltip:
+				'''
+				When this is set to true, the flashing effect during Thunderstorms will be disabled.
+
+				Default value: Off
+				'''
+		}
+
+		SettingDontScaleMainMenuUp: {
+			Label: Don't Scale Main Menu Up
+			Tooltip:
+				'''
+				When this is set to true, the title screen will not scale based on the vertical resolution
+				(pre-1.4.0.1 behavior).
+
+				If you get stuck with the Save Config button falling off of the screen, press Escape to exit.
+
+				Default value: Off
+				'''
+		}
+
+		FilterLimit: {
+			Label: Filter Limit
+			Tooltip:
+				'''
+				The amount of screen filters that can be active at any time.
+				This includes things such as The Constant filter (or Radio Thing), Blizzard and Sandstorm effects,
+				  Lunar Pillar shield distortion and ripples, Impending Doom effect, Monolith effects including the Blood Moon tint,
+				  and Graveyard effects.
+				This does not effect dyes.
+
+				Decreasing this number may improve performance on low end systems.
+				A value of 0 will disable all screen filters.
+
+				Default value: 16
+				'''
+		}
+
+		FilterPriorityThreshold: {
+			Label: Filter Priority Threshold
+			Tooltip:
+				'''
+				Filters with a lower priority than the one set will not be rendered.
+
+				Increasing the priority (to Very High) may improve performance on low end systems.
+
+				Default value: Very Low
+				'''
+		}
+
+		Support4K: {
+			Label: Support 4K
+			Tooltip:
+				'''
+				4K resolution options will be available in the video tab.
+
+				Default value: On
+				'''
+		}
+
+		Support8K: {
+			Label: Support 8K
+			Tooltip:
+				'''
+				Added by tModLoader to have the ability to disable 8k support while keeping 4k support.
+
+				Default value: On
+				'''
+		}
+
+		WorldRollbacksToKeep: {
+			Label: World Rollbacks To Keep
+			Tooltip:
+				'''
+				The number of world backups that Terraria will keep.
+				Must be set to 2 or higher to be enabled.
+
+				Default value: 2
+				'''
+		}
+
+		SettingBlockGamepadsEntirely: {
+			Label: Block Gamepads Entirely
+			Tooltip:
+				'''
+				Ignores all gamepad input when enabled.
+
+				Default value: Off
+				'''
+		}
+
+		KeyFavoriteModifier: {
+			Label: Key Favorite Modifier
+			Tooltip:
+				'''
+				Controls which key is used to Favorite items.
+				Can be set to any valid XNA key code.
+
+				Type in the name of the key you wish to bind.
+				Examples:
+				  [c/aaaaaa:LeftAlt] ➞ Left Alt
+				  [c/aaaaaa:LeftShift] ➞ Left Shift
+				  [c/aaaaaa:RightControl] ➞ Right Control
+				  [c/aaaaaa:F] ➞ The letter F
+				  [c/aaaaaa:F5] ➞ Function key F5
+				  [c/aaaaaa:D1] ➞ One/Exclamation key 1 !
+				  [c/aaaaaa:NumPad1] ➞ 1 key on the number pad
+				  [c/aaaaaa:OemTilde] ➞ Tilde/Grave/Backtick key ` ~
+				  [c/aaaaaa:OemPlus] ➞ Plus/Equals key + =
+				  [c/aaaaaa:Add] ➞ Addition Sign on the number pad
+
+				Default value: LeftAlt
+				'''
+		}
+
+		FlashIconForEvents: {
+			Label: Flash Icon For Events
+			Tooltip:
+				'''
+				Causes the game's taskbar icon to flash when minimized under certain conditions.
+
+				Default value: All
+				'''
+		}
+
+		CloudSavingDefault: {
+			Label: Cloud Saving Default
+			Tooltip:
+				'''
+				When this is set to true, new world and player files will automatically have cloud saving enabled.
+
+				Default value: Off
+				'''
+		}
+
+		ThrottleWhenInactive: {
+			Label: Throttle When Inactive
+			Tooltip:
+				'''
+				When this is set to true, the game will attempt to only update once every 20 milliseconds while the window is inactive.
+
+				Default value: On
+				'''
+		}
+
+		UseRazerRGB: {
+			Label: Use Razer RGB
+			Tooltip:
+				'''
+				Support for Razer RGB peripherals.
+
+				Default value: On
+				'''
+		}
+
+		UseCorsairRGB: {
+			Label: Use Corsair RGB
+			Tooltip:
+				'''
+				Support for Corsair RGB peripherals.
+
+				Default value: On
+				'''
+		}
+
+		UseLogitechRGB: {
+			Label: Use Logitech RGB
+			Tooltip:
+				'''
+				Support for Logitech RGB peripherals.
+
+				Default value: On
+				'''
+		}
+
+		UseSteelSeriesRGB: {
+			Label: Use Steel Series RGB
+			Tooltip:
+				'''
+				Support for Steel Series RGB peripherals.
+
+				Default value: On
+				'''
+		}
+
+		RGBUpdatesPerSecond: {
+			Label: RGB Updates Per Second
+			Tooltip:
+				'''
+				The rate at which lighting effects will update per second.
+
+				Default value: 45.0
+				'''
+		}
+
+		QuickLaunch: {
+			Label: Quick Launch
+			Tooltip:
+				'''
+				When this is set to true, Just In Time (JIT) loading will be skipped on the main menu.
+				This will result in the game launching faster, however you may experience stuttering in game as things load.
+
+				Recommended to keep Off for most people.
+
+				Default value: Off
+				'''
+		}
+	}
+
+	SmartDoorsSettings: {
+		Tooltip: ""
+		Enabled.Label: Enabled
+		GamepadOnly.Label: Gamepad Only
+		Disabled.Label: Disabled
+	}
+
+	WavesQualitySettings: {
+		Tooltip: ""
+		Auto.Label: Auto
+		High.Label: High
+		Medium.Label: Medium
+		Low.Label: Low
+		Off.Label: Off
+	}
+
+	PasswordsSettings: {
+		Tooltip: ""
+		Visible.Label: Visible
+		Hidden.Label: Hidden
+	}
+
+	QuickTrashSettings: {
+		Tooltip: ""
+		LeftControl.Label: Left Control
+		LeftShift.Label: Left Shift
+		Disabled.Label: Disabled
+	}
+
+	FilterPriorityThresholdSettings: {
+		Tooltip: ""
+		VeryLow.Label: Very Low
+		Low.Label: Low
+		Medium.Label: Medium
+		High.Label: High
+		VeryHigh.Label: Very High
+	}
+
+	KeyFavoriteModifierSettings: {
+		Tooltip: ""
+		LeftAlt.Label: Left Alt
+		LeftShift.Label: Left Shift
+		LeftControl.Label: Left Control
+		RightAlt.Label: Right Alt
+		RightShift.Label: Right Shift
+		RightControl.Label: Right Control
+	}
+
+	FlashIconForEventsSettings: {
+		Tooltip: ""
+		Damage.Label: Damage
+		SpawnOrDeath.Label: Spawn Or Death
+		WorldGen.Label: World Gen
+		All.Label: All
+		None.Label: None
+	}
+
+	AttackSpeedEffectTooltipsSettings: {
+		Tooltip: ""
+		ShowAll.Label: Show All
+		ShowAdjustedEffectiveness.Label: Show Adjusted Effectiveness
+		Hidden.Label: Hidden
+	}
+
+	# Doesn't work on vanilla enums, unfortunately
+	DoorAutoOpeningPreference: {
+		Tooltip: ""
+		Disabled.Label: Disabled
+		EnabledForGamepadOnly.Label: Gamepad Only
+		EnabledForEverything.Label: Enabled
+	}
+}
