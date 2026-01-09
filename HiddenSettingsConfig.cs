@@ -1,6 +1,5 @@
 using System;
 using System.ComponentModel;
-using System.Reflection;
 using Newtonsoft.Json;
 using Terraria;
 using Terraria.UI;
@@ -46,145 +45,26 @@ namespace HiddenSettings
 			// Main.NewText($"Main.cFavoriteKey {Main.cFavoriteKey} Main.FavoriteKey {Main.FavoriteKey}");
 		}
 
-		public int GetSet_ModLoader_attackSpeedScalingTooltipVisibility(int? newValue = null)
-		{
-			FieldInfo field = typeof(Terraria.ModLoader.ModLoader).GetField("attackSpeedScalingTooltipVisibility", BindingFlags.NonPublic | BindingFlags.Static);
-
-			if (newValue != null)
-			{
-				field.SetValue(Main.instance, newValue);
-			}
-
-			return (int)field.GetValue(Main.instance);
-		}
-
-		public bool GetSet_ModLoader_removeForcedMinimumZoom(bool? newValue = null)
-		{
-			FieldInfo field = typeof(Terraria.ModLoader.ModLoader).GetField("removeForcedMinimumZoom", BindingFlags.NonPublic | BindingFlags.Static);
-
-			if (newValue != null)
-			{
-				field.SetValue(Main.instance, newValue);
-			}
-
-			return (bool)field.GetValue(Main.instance);
-		}
-
-		public bool GetSet_Main_TOWMusicUnlocked(bool? newValue = null)
-		{
-			FieldInfo field = Terraria.Main.instance.GetType().GetField("TOWMusicUnlocked", BindingFlags.NonPublic | BindingFlags.Static);
-
-			if (newValue != null)
-			{
-				field.SetValue(Main.instance, newValue);
-			}
-
-			return (bool)field.GetValue(Main.instance);
-		}
-
-		public int GetSet_FilterManager__filterLimit(int? newValue = null)
-		{
-			Terraria.Graphics.Effects.FilterManager instance = Terraria.Graphics.Effects.Filters.Scene;
-			FieldInfo field = instance.GetType().GetField("_filterLimit", BindingFlags.NonPublic | BindingFlags.Instance);
-			if (newValue != null)
-			{
-				field.SetValue(instance, newValue);
-			}
-			return (int)field.GetValue(instance);
-		}
-
-		public Terraria.Graphics.Effects.EffectPriority GetSet_FilterManager__priorityThreshold(EffectPriority? newValue = null)
-		{
-			Terraria.Graphics.Effects.FilterManager instance = Terraria.Graphics.Effects.Filters.Scene;
-			FieldInfo field = instance.GetType().GetField("_priorityThreshold", BindingFlags.NonPublic | BindingFlags.Instance);
-			if (newValue != null)
-			{
-				field.SetValue(instance, newValue);
-			}
-			return (EffectPriority)field.GetValue(instance);
-		}
-
-		public GameNotificationType GetSet_Main__flashNotificationType(GameNotificationType? newValue = null)
-		{
-			FieldInfo field = Terraria.Main.instance.GetType().GetField("_flashNotificationType", BindingFlags.NonPublic | BindingFlags.Static);
-
-			if (newValue != null)
-			{
-				field.SetValue(Main.instance, newValue);
-			}
-
-			return (GameNotificationType)field.GetValue(Main.instance);
-		}
-
-		public bool GetSet_ChromaInitializer__useRazer(bool? newValue = null)
-		{
-			FieldInfo field = typeof(Terraria.Initializers.ChromaInitializer).GetField("_useRazer", BindingFlags.NonPublic | BindingFlags.Static);
-
-			if (newValue != null)
-			{
-				field.SetValue(Main.instance, newValue);
-			}
-
-			return (bool)field.GetValue(Main.instance);
-		}
-		public bool GetSet_ChromaInitializer__useCorsair(bool? newValue = null)
-		{
-			FieldInfo field = typeof(Terraria.Initializers.ChromaInitializer).GetField("_useCorsair", BindingFlags.NonPublic | BindingFlags.Static);
-
-			if (newValue != null)
-			{
-				field.SetValue(Main.instance, newValue);
-			}
-
-			return (bool)field.GetValue(Main.instance);
-		}
-		public bool GetSet_ChromaInitializer__useLogitech(bool? newValue = null)
-		{
-			FieldInfo field = typeof(Terraria.Initializers.ChromaInitializer).GetField("_useLogitech", BindingFlags.NonPublic | BindingFlags.Static);
-
-			if (newValue != null)
-			{
-				field.SetValue(Main.instance, newValue);
-			}
-
-			return (bool)field.GetValue(Main.instance);
-		}
-		public bool GetSet_ChromaInitializer__useSteelSeries(bool? newValue = null)
-		{
-			FieldInfo field = typeof(Terraria.Initializers.ChromaInitializer).GetField("_useSteelSeries", BindingFlags.NonPublic | BindingFlags.Static);
-
-			if (newValue != null)
-			{
-				field.SetValue(Main.instance, newValue);
-			}
-
-			return (bool)field.GetValue(Main.instance);
-		}
-		public float GetSet_ChromaInitializer__rgbUpdateRate(float? newValue = null)
-		{
-			FieldInfo field = typeof(Terraria.Initializers.ChromaInitializer).GetField("_rgbUpdateRate", BindingFlags.NonPublic | BindingFlags.Static);
-
-			if (newValue != null)
-			{
-				field.SetValue(Main.instance, newValue);
-			}
-
-			return (float)field.GetValue(Main.instance);
-		}
-
 #pragma warning disable CA1822 // Mark members as static
 // ModConfig elements cannot be static!
 
 		[Header("UsuallyOnlyAvailableInGame")]
 		[JsonIgnore]
 		[ShowDespiteJsonIgnore]
-		[DefaultValue(DoorOpeningHelper.DoorAutoOpeningPreference.EnabledForEverything)]
+		// [DefaultValue(DoorOpeningHelper.DoorAutoOpeningPreference.EnabledForEverything)]
+		[DefaultValue(SmartDoorsSettings.Enabled)]
 		[DrawTicks]
-
+		/* // Using the vanilla Enum. Unfortunetly, I couldn't figure out how to change the labels and tooltips in the localization of vanilla enums.
 		public DoorOpeningHelper.DoorAutoOpeningPreference SmartDoors
 		{
 			get => DoorOpeningHelper.PreferenceSettings;
 			set => DoorOpeningHelper.PreferenceSettings = value;
+		}
+		*/
+		public SmartDoorsSettings SmartDoors
+		{
+			get => (SmartDoorsSettings)DoorOpeningHelper.PreferenceSettings;
+			set => DoorOpeningHelper.PreferenceSettings = (DoorOpeningHelper.DoorAutoOpeningPreference)value;
 		}
 
 		[JsonIgnore]
@@ -293,12 +173,20 @@ namespace HiddenSettings
 
 		[JsonIgnore]
 		[ShowDespiteJsonIgnore]
-		[DefaultValue(Player.Settings.HoverControlMode.Hold)]
+		// [DefaultValue(Player.Settings.HoverControlMode.Hold)]
+		[DefaultValue(HoverControlModeSettings.Hold)]
 		[DrawTicks]
+		/* Vanilla Enum
 		public Player.Settings.HoverControlMode HoverControls
 		{
 			get => Player.Settings.HoverControl;
 			set => Player.Settings.HoverControl = value;
+		}
+		*/
+		public HoverControlModeSettings HoverControls
+		{
+			get => (HoverControlModeSettings)Player.Settings.HoverControl;
+			set => Player.Settings.HoverControl = (Player.Settings.HoverControlMode)value;
 		}
 
 		[Header("UsuallyOnlyAvailableOnMainMenu")]
@@ -409,7 +297,7 @@ namespace HiddenSettings
 		{
 			get
 			{
-				return GetSet_ModLoader_attackSpeedScalingTooltipVisibility() switch
+				return Reflected.GetSet_ModLoader_attackSpeedScalingTooltipVisibility() switch
 				{
 					0 => AttackSpeedEffectTooltipsSettings.ShowAll,
 					1 => AttackSpeedEffectTooltipsSettings.ShowAdjustedEffectiveness,
@@ -422,13 +310,13 @@ namespace HiddenSettings
 				switch (value)
 				{
 					case AttackSpeedEffectTooltipsSettings.ShowAll:
-						GetSet_ModLoader_attackSpeedScalingTooltipVisibility(0);
+						Reflected.GetSet_ModLoader_attackSpeedScalingTooltipVisibility(0);
 						break;
 					case AttackSpeedEffectTooltipsSettings.ShowAdjustedEffectiveness:
-						GetSet_ModLoader_attackSpeedScalingTooltipVisibility(1);
+						Reflected.GetSet_ModLoader_attackSpeedScalingTooltipVisibility(1);
 						break;
 					case AttackSpeedEffectTooltipsSettings.Hidden:
-						GetSet_ModLoader_attackSpeedScalingTooltipVisibility(2);
+						Reflected.GetSet_ModLoader_attackSpeedScalingTooltipVisibility(2);
 						break;
 					default:
 						break;
@@ -440,11 +328,55 @@ namespace HiddenSettings
 		[ShowDespiteJsonIgnore]
 		public bool RemoveForcedMinimumZoom
 		{
-			get => GetSet_ModLoader_removeForcedMinimumZoom();
-			set => GetSet_ModLoader_removeForcedMinimumZoom(value);
+			get => Reflected.GetSet_ModLoader_removeForcedMinimumZoom();
+			set => Reflected.GetSet_ModLoader_removeForcedMinimumZoom(value);
 		}
 
 		[Header("HiddenOptions")]
+
+		[JsonIgnore]
+		[ShowDespiteJsonIgnore]
+		[DefaultValue(105)]
+		[Range(20, 300)]
+		[Slider]
+		public int MinimapZoom
+		{
+			get => (int)(Main.mapMinimapScale * 100);
+			set => Main.mapMinimapScale = (value / 100f);
+		}
+
+		[JsonIgnore]
+		[ShowDespiteJsonIgnore]
+		[DefaultValue(100)]
+		[Range(1, 100)]
+		[Slider]
+		public int MinimapTransparency
+		{
+			get => (int)(Main.mapMinimapAlpha * 100);
+			set => Main.mapMinimapAlpha = (value / 100f);
+		}
+
+		[JsonIgnore]
+		[ShowDespiteJsonIgnore]
+		[DefaultValue(250)]
+		[Range(0, 1600)]
+		[Slider]
+		public int OverlayMapZoom
+		{
+			get => (int)(Main.mapOverlayScale * 100);
+			set => Main.mapOverlayScale = (value / 100f);
+		}
+
+		[JsonIgnore]
+		[ShowDespiteJsonIgnore]
+		[DefaultValue(35)]
+		[Range(0, 100)]
+		[Slider]
+		public int OverlayMapTransparency
+		{
+			get => (int)(Main.mapOverlayAlpha * 100);
+			set => Main.mapOverlayAlpha = (value / 100f);
+		}
 
 		[JsonIgnore]
 		[ShowDespiteJsonIgnore]
@@ -480,8 +412,8 @@ namespace HiddenSettings
 		[DefaultValue(false)]
 		public bool UnlockMusicSwap
 		{
-			get => GetSet_Main_TOWMusicUnlocked();
-			set => GetSet_Main_TOWMusicUnlocked(value); 
+			get => Reflected.GetSet_Main_TOWMusicUnlocked();
+			set => Reflected.GetSet_Main_TOWMusicUnlocked(value); 
 		}
 
 		[JsonIgnore]
@@ -545,18 +477,26 @@ namespace HiddenSettings
 		[Slider]
 		public int FilterLimit
 		{
-			get => GetSet_FilterManager__filterLimit();
-			set => GetSet_FilterManager__filterLimit(value);
+			get => Reflected.GetSet_FilterManager__filterLimit();
+			set => Reflected.GetSet_FilterManager__filterLimit(value);
 		}
 
 		[JsonIgnore]
 		[ShowDespiteJsonIgnore]
-		[DefaultValue(EffectPriority.VeryLow)]
+		// [DefaultValue(EffectPriority.VeryLow)]
+		[DefaultValue(FilterPriorityThresholdSettings.VeryLow)]
 		[DrawTicks]
+		/*
 		public EffectPriority FilterPriorityThreshold
 		{
 			get => GetSet_FilterManager__priorityThreshold();
 			set => GetSet_FilterManager__priorityThreshold(value);
+		}
+		*/
+		public FilterPriorityThresholdSettings FilterPriorityThreshold
+		{
+			get => (FilterPriorityThresholdSettings)Reflected.GetSet_FilterManager__priorityThreshold();
+			set => Reflected.GetSet_FilterManager__priorityThreshold((EffectPriority)value);
 		}
 
 		[JsonIgnore]
@@ -614,12 +554,20 @@ namespace HiddenSettings
 
 		[JsonIgnore]
 		[ShowDespiteJsonIgnore]
-		[DefaultValue(GameNotificationType.All)]
+		// [DefaultValue(GameNotificationType.All)]
+		[DefaultValue(FlashIconForEventsSettings.All)]
 		[DrawTicks]
+		/*
 		public GameNotificationType FlashIconForEvents
 		{
 			get => GetSet_Main__flashNotificationType();
 			set => GetSet_Main__flashNotificationType(value);
+		}
+		*/
+		public FlashIconForEventsSettings FlashIconForEvents
+		{
+			get => (FlashIconForEventsSettings)Reflected.GetSet_Main__flashNotificationType();
+			set => Reflected.GetSet_Main__flashNotificationType((GameNotificationType)value);
 		}
 
 		[JsonIgnore]
@@ -645,32 +593,32 @@ namespace HiddenSettings
 		[DefaultValue(true)]
 		public bool UseRazerRGB
 		{
-			get => GetSet_ChromaInitializer__useRazer();
-			set => GetSet_ChromaInitializer__useRazer(value);
+			get => Reflected.GetSet_ChromaInitializer__useRazer();
+			set => Reflected.GetSet_ChromaInitializer__useRazer(value);
 		}
 		[JsonIgnore]
 		[ShowDespiteJsonIgnore]
 		[DefaultValue(true)]
 		public bool UseCorsairRGB
 		{
-			get => GetSet_ChromaInitializer__useCorsair();
-			set => GetSet_ChromaInitializer__useCorsair(value);
+			get => Reflected.GetSet_ChromaInitializer__useCorsair();
+			set => Reflected.GetSet_ChromaInitializer__useCorsair(value);
 		}
 		[JsonIgnore]
 		[ShowDespiteJsonIgnore]
 		[DefaultValue(true)]
 		public bool UseLogitechRGB
 		{
-			get => GetSet_ChromaInitializer__useLogitech();
-			set => GetSet_ChromaInitializer__useLogitech(value);
+			get => Reflected.GetSet_ChromaInitializer__useLogitech();
+			set => Reflected.GetSet_ChromaInitializer__useLogitech(value);
 		}
 		[JsonIgnore]
 		[ShowDespiteJsonIgnore]
 		[DefaultValue(true)]
 		public bool UseSteelSeriesRGB
 		{
-			get => GetSet_ChromaInitializer__useSteelSeries();
-			set => GetSet_ChromaInitializer__useSteelSeries(value);
+			get => Reflected.GetSet_ChromaInitializer__useSteelSeries();
+			set => Reflected.GetSet_ChromaInitializer__useSteelSeries(value);
 		}
 
 		[JsonIgnore]
@@ -680,8 +628,8 @@ namespace HiddenSettings
 		[Increment(1f)]
 		public float RGBUpdatesPerSecond
 		{
-			get => GetSet_ChromaInitializer__rgbUpdateRate();
-			set => GetSet_ChromaInitializer__rgbUpdateRate(value);
+			get => Reflected.GetSet_ChromaInitializer__rgbUpdateRate();
+			set => Reflected.GetSet_ChromaInitializer__rgbUpdateRate(value);
 		}
 
 		[JsonIgnore]
@@ -695,14 +643,12 @@ namespace HiddenSettings
 
 #pragma warning restore CA1822 // Mark members as static
 
-		/*
 		public enum SmartDoorsSettings
 		{ 
-			Enabled,
+			Disabled,
 			GamepadOnly,
-			Disabled
+			Enabled
 		}
-		*/
 
 		public enum WavesQualitySettings
 		{
@@ -710,6 +656,12 @@ namespace HiddenSettings
 			Low,
 			Medium,
 			High
+		}
+
+		public enum HoverControlModeSettings
+		{
+			Hold,
+			Click
 		}
 
 		public enum PasswordsSettings
@@ -730,7 +682,6 @@ namespace HiddenSettings
 			ShowAdjustedEffectiveness,
 			Hidden
 		}
-		/*
 		public enum FilterPriorityThresholdSettings
 		{
 			VeryLow,
@@ -739,6 +690,8 @@ namespace HiddenSettings
 			High,
 			VeryHigh
 		}
+
+		/*
 		public enum KeyFavoriteModifierSettings
 		{
 			LeftAlt,
@@ -749,15 +702,16 @@ namespace HiddenSettings
 			RightControl,
 			Other
 		}
+		*/
 
+		[Flags] // Treat each enum as a bit instead of a int.
 		public enum FlashIconForEventsSettings
 		{
-			Damage,
-			SpawnOrDeath,
-			WorldGen,
-			All,
-			None
-		}
-		*/
+			None = 0,
+			Damage = 1,
+			SpawnOrDeath = 2,
+			WorldGen = 4,
+			All = 7,
+		} 
 	}
 }

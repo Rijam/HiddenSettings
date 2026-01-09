@@ -8,13 +8,15 @@ Configs: {
 			HiddenOptions: Hidden Options
 		}
 
+		# In game
+		
 		SmartDoors: {
 			Label: Smart Doors
 			Tooltip:
 				'''
 				Changes if doors will open automatically when walking into the door.
 
-				Default value: EnabledForEverything
+				Default value: Enabled
 				'''
 		}
 
@@ -64,17 +66,6 @@ Configs: {
 
 				Range: 10 - 300
 				Default value: 100
-				'''
-		}
-
-		Map: {
-			Label: Map
-			Tooltip:
-				'''
-				Enables the minimap and fullscreen map.
-				Disabling the map will prevent you from teleporting with Pylons or Wormhole potions.
-
-				Default value: On
 				'''
 		}
 
@@ -138,6 +129,17 @@ Configs: {
 
 		# Main Menu
 		
+		Map: {
+			Label: Map
+			Tooltip:
+				'''
+				Enables the minimap and fullscreen map.
+				Disabling the map will prevent you from teleporting with Pylons or Wormhole potions.
+
+				Default value: On
+				'''
+		}
+
 		Passwords: {
 			Label: Passwords
 			Tooltip:
@@ -205,6 +207,61 @@ Configs: {
 
 		# Hidden Options
 		
+		MinimapZoom: {
+			Label: Minimap Zoom
+			Tooltip:
+				'''
+				The zoom level of the minimap.
+				This can also be changed by click the +, -, or = button on the minimap frame.
+				Vanilla limits the zoom to 20% to 300%.
+
+				Range: 20 - 300
+				Default value: 105
+				'''
+		}
+
+		MinimapTransparency: {
+			Label: Minimap Transparency
+			Tooltip:
+				'''
+				The transparency of the minimap.
+				This can also be changed by pressing Page Up and Page Down.
+				Vanilla limits the transparency to 1% to 100%.
+
+				Range: 1 - 100
+				Default value: 100
+				'''
+		}
+
+		OverlayMapZoom: {
+			Label: Overlay Map Zoom
+			Tooltip:
+				'''
+				The zoom level of the overlay map.
+				This can also be changed by pressing Add and Subtract on the number pad.
+				Vanilla limits the zoom to the [screen width / world width] to 1600%.
+				  1920×1080p screen on Small world: 1920 / 4200 = 45%
+				  1920×1080p screen on Medium world: 1920 / 6400 = 30%
+				  1920×1080p screen on Large world: 1920 / 8400 = 22%
+
+				Range: 0 - 1600
+				Default value: 250
+				'''
+		}
+
+		OverlayMapTransparency: {
+			Label: Overlay Map Transparency
+			Tooltip:
+				'''
+				The transparency of the overlay.
+				This can also be changed by pressing Page Up and Page Down.
+				Vanilla limits the transparency to 1% to 100%.
+
+				Range: 0 - 100
+				Default value: 100
+				'''
+		}
+
 		UseExperimentalFeatures: {
 			Label: Use Experimental Features
 			Tooltip:
@@ -255,6 +312,7 @@ Configs: {
 			Tooltip:
 				'''
 				Smooths NPC movement within a pixel range in multiplayer.
+				There are 16 pixels in a tile. 300 pixels = 18.75 tiles.
 
 				Default value: 300
 				'''
@@ -266,6 +324,7 @@ Configs: {
 				'''
 				The distance (in pixels) at which team nameplates in multiplayer start rendering.
 				If set to 0 or below, they will stop rendering entirely.
+				There are 16 pixels in a tile. 2000 pixels = 125 tiles.
 
 				Default value: 2000
 				'''
@@ -276,6 +335,7 @@ Configs: {
 			Tooltip:
 				'''
 				The height (in pixels) that a waterfall can draw.
+				There are 16 pixels in a tile. 1000 pixels = 62.5 tiles.
 
 				Default value: 1000
 				'''
@@ -472,7 +532,7 @@ Configs: {
 			Label: RGB Updates Per Second
 			Tooltip:
 				'''
-				The rate at which lighting effects will update per second.
+				The rate at which RGB lighting effects will update per second.
 
 				Default value: 45.0
 				'''
@@ -494,69 +554,305 @@ Configs: {
 
 	SmartDoorsSettings: {
 		Tooltip: ""
-		Enabled.Label: Enabled
-		GamepadOnly.Label: Gamepad Only
-		Disabled.Label: Disabled
+
+		Disabled: {
+			Label: Disabled
+			Tooltip:
+				'''
+				{$Label}
+				Doors will not automatically open.
+				'''
+		}
+
+		Enabled: {
+			Label: Enabled
+			Tooltip:
+				'''
+				{$Label}
+				Doors will automatically open.
+				[c/AAAAAA:(Default value)]
+				'''
+		}
+
+		GamepadOnly: {
+			Label: Gamepad Only
+			Tooltip:
+				'''
+				{$Label}
+				Doors will automatically open, but only when using a controller.
+				'''
+		}
 	}
 
 	WavesQualitySettings: {
 		Tooltip: ""
-		Auto.Label: Auto
-		High.Label: High
-		Medium.Label: Medium
-		Low.Label: Low
-		Off.Label: Off
+
+		Off: {
+			Label: Off
+			Tooltip:
+				'''
+				{$Label}
+				Water will not create any ripples.
+				'''
+		}
+
+		Low: {
+			Label: Low
+			Tooltip:
+				'''
+				{$Label}
+				Passive water distortion; nothing really interacts with it.
+				'''
+		}
+
+		Medium: {
+			Label: Medium
+			Tooltip:
+				'''
+				{$Label}
+				Players and most things create ripples as they pass through water.
+				'''
+		}
+
+		High: {
+			Label: High
+			Tooltip:
+				'''
+				{$Label}
+				Projectiles also create ripples and ripples can bounce off walls.
+				[c/AAAAAA:(Default value)]
+				'''
+		}
+	}
+
+	HoverControlModeSettings: {
+		Tooltip: ""
+
+		Hold: {
+			Label: Hold
+			Tooltip:
+				'''
+				{$Label}
+				The player has to hold Down and Jump to use their wings' hover ability.
+				[c/AAAAAA:(Default value)]
+				'''
+		}
+
+		Click: {
+			Label: Click
+			Tooltip:
+				'''
+				{$Label}
+				Hovering is enabled by pressing Down, and disabled by pressing Up while flying.
+				'''
+		}
 	}
 
 	PasswordsSettings: {
 		Tooltip: ""
-		Visible.Label: Visible
-		Hidden.Label: Hidden
+
+		Visible: {
+			Label: Visible
+			Tooltip:
+				'''
+				{$Label}
+				The password will be displayed in plain text (clearly visible).
+				[c/AAAAAA:(Default value)]
+				'''
+		}
+
+		Hidden: {
+			Label: Hidden
+			Tooltip:
+				'''
+				{$Label}
+				The password will be displayed as asterisks *
+				'''
+		}
 	}
 
 	QuickTrashSettings: {
 		Tooltip: ""
-		LeftControl.Label: Left Control
-		LeftShift.Label: Left Shift
-		Disabled.Label: Disabled
-	}
 
-	FilterPriorityThresholdSettings: {
-		Tooltip: ""
-		VeryLow.Label: Very Low
-		Low.Label: Low
-		Medium.Label: Medium
-		High.Label: High
-		VeryHigh.Label: Very High
-	}
+		LeftControl: {
+			Label: Left Control
+			Tooltip:
+				'''
+				{$Label}
+				Quick Trash can be used with left control.
+				[c/AAAAAA:(Default value)]
+				'''
+		}
 
-	KeyFavoriteModifierSettings: {
-		Tooltip: ""
-		LeftAlt.Label: Left Alt
-		LeftShift.Label: Left Shift
-		LeftControl.Label: Left Control
-		RightAlt.Label: Right Alt
-		RightShift.Label: Right Shift
-		RightControl.Label: Right Control
-	}
+		LeftShift: {
+			Label: Left Shift
+			Tooltip:
+				'''
+				{$Label}
+				Quick Trash can be used with left shift.
+				'''
+		}
 
-	FlashIconForEventsSettings: {
-		Tooltip: ""
-		Damage.Label: Damage
-		SpawnOrDeath.Label: Spawn Or Death
-		WorldGen.Label: World Gen
-		All.Label: All
-		None.Label: None
+		Disabled: {
+			Label: Disabled
+			Tooltip:
+				'''
+				{$Label}
+				Quick Trash will be disabled.
+				'''
+		}
 	}
 
 	AttackSpeedEffectTooltipsSettings: {
 		Tooltip: ""
-		ShowAll.Label: Show All
-		ShowAdjustedEffectiveness.Label: Show Adjusted Effectiveness
-		Hidden.Label: Hidden
+
+		ShowAll: {
+			Label: Show All
+			Tooltip:
+				'''
+				{$Label}
+				If the weapon gains increased or decreased boosts from attack speed,
+				  an additional tooltip line will be added: "X% benefit from attack speed boosts".
+				If the weapon does not scale with any attack speed boosts,
+				  an additional tooltip line will be added: "Does not scale with attack speed".
+				'''
+		}
+
+		ShowAdjustedEffectiveness: {
+			Label: Show Adjusted Effectiveness
+			Tooltip:
+				'''
+				{$Label}
+				If the weapon gains increased or decreased boosts from attack speed,
+				  an additional tooltip line will be added: "X% benefit from attack speed boosts".
+				'''
+		}
+
+		Hidden: {
+			Label: Hidden
+			Tooltip:
+				'''
+				{$Label}
+				The additional tooltip will not be shown (vanilla behavior).
+				[c/AAAAAA:(Default value)]
+				'''
+		}
 	}
 
-	# Doesn't work on vanilla enums, unfortunately
+	FilterPriorityThresholdSettings: {
+		Tooltip: ""
+
+		VeryLow: {
+			Label: Very Low
+			Tooltip:
+				'''
+				{$Label}
+				All filters will be shown.
+				[c/AAAAAA:(Default value)]
+				'''
+		}
+
+		Low: {
+			Label: Low
+			Tooltip:
+				'''
+				{$Label}
+				Includes: heat distortion from desert or the underworld.
+				'''
+		}
+
+		Medium: {
+			Label: Medium
+			Tooltip:
+				'''
+				{$Label}
+				Includes: Monoliths, Graveyard, Blood Moon, and The Constant/Radio Thing.
+				'''
+		}
+
+		High: {
+			Label: High
+			Tooltip:
+				'''
+				{$Label}
+				Includes: Lunar Pillars, sandstorm, and blizzard. 
+				'''
+		}
+
+		VeryHigh: {
+			Label: Very High
+			Tooltip:
+				'''
+				{$Label}
+				Only the most important filters will be shown.
+				Includes Moon Lord, water distortion, and Eternia Crystal.
+				'''
+		}
+	}
+
+	/*
+	KeyFavoriteModifierSettings: {
+	Tooltip: ""
+	LeftAlt.Label: Left Alt
+	LeftShift.Label: Left Shift
+	LeftControl.Label: Left Control
+	RightAlt.Label: Right Alt
+	RightShift.Label: Right Shift
+	RightControl.Label: Right Control
+	}
+	*/
+	
+	FlashIconForEventsSettings: {
+		Tooltip: ""
+
+		None: {
+			Label: None
+			Tooltip:
+				'''
+				{$Label}
+				The game's taskbar icon will never flash.
+				'''
+		}
+
+		Damage: {
+			Label: Damage
+			Tooltip:
+				'''
+				{$Label}
+				The game's taskbar icon will flash when the player takes damage.
+				'''
+		}
+
+		SpawnOrDeath: {
+			Label: Spawn Or Death
+			Tooltip:
+				'''
+				{$Label}
+				The game's taskbar icon will flash the player dies or respawns.
+				'''
+		}
+
+		WorldGen: {
+			Label: World Gen
+			Tooltip:
+				'''
+				{$Label}
+				The game's taskbar icon will flash when a world has finished generating.
+				'''
+		}
+
+		All: {
+			Label: All
+			Tooltip:
+				'''
+				{$Label}
+				The game's taskbar icon will flash when any of the above events happen.
+				[c/AAAAAA:(Default value)]
+				'''
+		}
+	}
+
+	# Doesn't work on vanilla enums, unfortunately. I tried many different scopes.
 	DoorAutoOpeningPreference: {
 		Tooltip: ""
 		Disabled.Label: Disabled
