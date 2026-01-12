@@ -191,5 +191,28 @@ namespace HiddenSettings
 
 			return (float)field.GetValue(Main.instance);
 		}
+
+		/*
+		public static Terraria.UI.UIElement? Invoke_HandlePanelCreation(Terraria.GameContent.UI.States.UIManageControls self, string bind, InputMode currentInputMode, Color color)
+		{
+			// Private, so use reflection to invoke it.
+			MethodInfo method = self.GetType().GetMethod("HandlePanelCreation", BindingFlags.NonPublic | BindingFlags.Instance);
+			return (Terraria.UI.UIElement?)method.Invoke(self, [bind, currentInputMode, color]);
+		}
+		*/
+
+		/*
+		public static IDictionary<string, ModKeybind> Get_KeybindLoader_modKeybinds()
+		{
+			FieldInfo field = typeof(Terraria.ModLoader.KeybindLoader).GetField("modKeybinds", BindingFlags.NonPublic | BindingFlags.Static);
+			return (IDictionary<string, ModKeybind>)field.GetValue(null);
+		}
+
+		public static string Get_ModKeybind_FullName(ModKeybind instance)
+		{
+			PropertyInfo property = typeof(Terraria.ModLoader.ModKeybind).GetProperty("FullName", BindingFlags.NonPublic | BindingFlags.Instance);
+			return (string)property.GetValue(instance);
+		}
+		*/
 	}
 }

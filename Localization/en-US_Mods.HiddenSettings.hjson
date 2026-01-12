@@ -435,11 +435,13 @@ Configs: {
 		}
 
 		KeyFavoriteModifier: {
-			Label: Key Favorite Modifier
+			Label: Favorite Modifier Key
 			Tooltip:
 				'''
 				Controls which key is used to Favorite items.
 				Can be set to any valid XNA key code.
+
+				[c/aaffaa:This option can also be changed in the game controls settings as a mod key bind.]
 
 				Type in the name of the key you wish to bind.
 				Examples:
@@ -860,3 +862,5 @@ Configs: {
 		EnabledForEverything.Label: Enabled
 	}
 }
+
+Keybinds.FavoriteModifier.DisplayName: Favorite Modifier

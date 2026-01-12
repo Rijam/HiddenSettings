@@ -54,7 +54,7 @@ Most of these settings are hidden within the game's config.json
 [*] Support 8K
 [*] World Rollbacks To Keep
 [*] Block Gamepads Entirely
-[*] Key Favorite Modifier
+[*] Favorite Modifier Key (can also be changed in the controls menu)
 [*] Flash Icon For Events
 [*] Cloud Saving Default
 [*] Throttle When Inactive

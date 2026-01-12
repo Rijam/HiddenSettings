@@ -1,11 +1,13 @@
+using Newtonsoft.Json;
 using System;
 using System.ComponentModel;
-using Newtonsoft.Json;
 using Terraria;
-using Terraria.UI;
-using Terraria.ModLoader.Config;
-using Terraria.Graphics.Effects;
 using Terraria.GameContent;
+using Terraria.GameInput;
+using Terraria.Graphics.Effects;
+using Terraria.ModLoader;
+using Terraria.ModLoader.Config;
+using Terraria.UI;
 
 namespace HiddenSettings
 {
@@ -32,6 +34,10 @@ namespace HiddenSettings
 				Main.screenBorderlessPendingResizes = (Main.screenBorderless ? 6 : 0);
 				Main.SetResolution(Main.PendingResolutionWidth, Main.PendingResolutionHeight);
 			}
+
+			// Reset the mod's Favorite Modifier mod key bind and set it to the real favorite key.
+			PlayerInput.CurrentProfile.InputModes[InputMode.Keyboard].KeyStatus["HiddenSettings/FavoriteModifier"].Clear();
+			PlayerInput.CurrentProfile.InputModes[InputMode.Keyboard].KeyStatus["HiddenSettings/FavoriteModifier"].Add(Main.cFavoriteKey);
 
 			Main.SaveSettings();
 
@@ -543,13 +549,22 @@ namespace HiddenSettings
 			get => Main.cFavoriteKey;
 			set
 			{
-				Main.cFavoriteKey = value;
-				if (Enum.TryParse<Microsoft.Xna.Framework.Input.Keys>(Main.cFavoriteKey, out var result2))
-				{
-					Main.FavoriteKey = result2;
-				}
-				Main.NewText($"Favorite Key now bound to {Main.FavoriteKey}");
+				SetFavoriteModifier(value);
 			}
+		}
+
+		/// <summary>
+		/// Sets the favorite modifier key.
+		/// </summary>
+		/// <param name="key">XNA key code</param>
+		public static void SetFavoriteModifier(string key)
+		{
+			Main.cFavoriteKey = key;
+			if (Enum.TryParse<Microsoft.Xna.Framework.Input.Keys>(Main.cFavoriteKey, out var favKeyResult))
+			{
+				Main.FavoriteKey = favKeyResult;
+			}
+			ModContent.GetInstance<HiddenSettings>().Logger.Info($"Favorite Key is now bound to {Main.FavoriteKey}");
 		}
 
 		[JsonIgnore]
