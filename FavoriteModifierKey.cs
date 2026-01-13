@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Terraria.GameContent.UI.Elements;
 using Terraria.GameInput;
@@ -37,37 +38,51 @@ namespace HiddenSettings
 			// Reset and Clear buttons at the very bottom of the mod key binds list.
 			if (bind == "ResetModKeybinds" || bind == "ClearModKeybinds")
 			{
-				// Add delegate to reset the key when reset or clear is pressed.
-				result.OnLeftClick += delegate (UIMouseEvent evt, UIElement listeningElement)
+				try
 				{
-					HiddenSettingsConfig.SetFavoriteModifier("LeftAlt");
+					// Add delegate to reset the key when reset or clear is pressed.
+					result.OnLeftClick += delegate (UIMouseEvent evt, UIElement listeningElement)
+					{
+						HiddenSettingsConfig.SetFavoriteModifier("LeftAlt");
 #if DEBUG
-					ModContent.GetInstance<HiddenSettings>().Logger.Debug($"  Added delegate for the global reset or clear buttons.");
+						ModContent.GetInstance<HiddenSettings>().Logger.Debug($"  Added delegate for the global reset or clear buttons.");
 #endif
-				};
+					};
+				}
+				catch (Exception e)
+				{
+					ModContent.GetInstance<HiddenSettings>().Logger.Warn($"Error when trying to reset the mod's favorite key bind (CreatePanel: ResetModKeybinds ClearModKeybinds): {e}");
+				}
 			}
 			// This mod's Favorite Modifier key bind.
 			if (bind == "HiddenSettings/FavoriteModifier")
 			{
-				// Each mod key bind has two elements.
-				// The left is the part that shows the current key and is UIKeybindingListItem type.
-				// The right is the part that says "Reset to default ()" and is UIKeybindingSimpleListItem type.
-				// This is found in UIManageControls.TML.cs
-				foreach (UIElement child in result.Children)
+				try
 				{
-#if DEBUG
-					ModContent.GetInstance<HiddenSettings>().Logger.Debug($"        Child {child}");
-#endif
-					if (child is UIKeybindingSimpleListItem right)
+					// Each mod key bind has two elements.
+					// The left is the part that shows the current key and is UIKeybindingListItem type.
+					// The right is the part that says "Reset to default ()" and is UIKeybindingSimpleListItem type.
+					// This is found in UIManageControls.TML.cs
+					foreach (UIElement child in result.Children)
 					{
-						right.OnLeftClick += FavoriteModifierKeyResetButton;
-						// Works, but thows the error "Delegates must be of the same type"
-						// right.OnLeftClick += delegate (UIMouseEvent evt, UIElement listeningElement)
-						// {
-						//	HiddenSettingsConfig.SetFavoriteModifier("LeftAlt");
-						//	ModContent.GetInstance<HiddenSettings>().Logger.Debug($"  Added delegate for the right side of the mod key bind.");
-						// };
+#if DEBUG
+						ModContent.GetInstance<HiddenSettings>().Logger.Debug($"        Child {child}");
+#endif
+						if (child is UIKeybindingSimpleListItem right)
+						{
+							right.OnLeftClick += FavoriteModifierKeyResetButton;
+							// Works, but thows the error "Delegates must be of the same type"
+							// right.OnLeftClick += delegate (UIMouseEvent evt, UIElement listeningElement)
+							// {
+							//	HiddenSettingsConfig.SetFavoriteModifier("LeftAlt");
+							//	ModContent.GetInstance<HiddenSettings>().Logger.Debug($"  Added delegate for the right side of the mod key bind.");
+							// };
+						}
 					}
+				}
+				catch (Exception e)
+				{
+					ModContent.GetInstance<HiddenSettings>().Logger.Warn($"Error when trying to reset the mod's favorite key bind (CreatePanel: HiddenSettings/FavoriteModifier): {e}");
 				}
 			}
 			return result;
@@ -90,10 +105,18 @@ namespace HiddenSettings
 		/// </summary>
 		private void Hook_PlayerInput_ResetKeyBinding(Terraria.GameInput.On_PlayerInput.orig_ResetKeyBinding orig, InputMode inputMode, string trigger)
 		{
-			if (trigger == "HiddenSettings/FavoriteModifier")
+			try
 			{
-				HiddenSettingsConfig.SetFavoriteModifier("LeftAlt");
+				if (trigger == "HiddenSettings/FavoriteModifier")
+				{
+					HiddenSettingsConfig.SetFavoriteModifier("LeftAlt");
+				}
 			}
+			catch (Exception e)
+			{
+				ModContent.GetInstance<HiddenSettings>().Logger.Warn($"Error when trying to reset the mod's favorite key bind (ResetKeyBinding): {e}");
+			}
+			
 			orig(inputMode, trigger);
 		}
 
@@ -105,16 +128,23 @@ namespace HiddenSettings
 #if DEBUG
 			ModContent.GetInstance<HiddenSettings>().Logger.Debug($"ListenFor triggername is {triggerName}; inputmode {inputmode}; ListeningTrigger {Terraria.GameInput.PlayerInput.ListeningTrigger}");
 #endif
-			if (PlayerInput.ListeningTrigger == "HiddenSettings/FavoriteModifier") // Current key that the key binding system is listening for.
+			try
 			{
-				List<string> keyStatus = PlayerInput.CurrentProfile.InputModes[inputmode].KeyStatus[PlayerInput.ListeningTrigger]; // Get the current status of the key.
-#if DEBUG
-				foreach (string key in keyStatus)
+				if (PlayerInput.ListeningTrigger == "HiddenSettings/FavoriteModifier") // Current key that the key binding system is listening for.
 				{
-					ModContent.GetInstance<HiddenSettings>().Logger.Debug($"ListenFor keystatus is {key}");
-				}
+					List<string> keyStatus = PlayerInput.CurrentProfile.InputModes[inputmode].KeyStatus[PlayerInput.ListeningTrigger]; // Get the current status of the key.
+#if DEBUG
+					foreach (string key in keyStatus)
+					{
+						ModContent.GetInstance<HiddenSettings>().Logger.Debug($"ListenFor keystatus is {key}");
+					}
 #endif
-				HiddenSettingsConfig.SetFavoriteModifier(keyStatus[0]?? "LeftAlt"); // If for some reason the status isn't set, set it to LeftAlt.
+					HiddenSettingsConfig.SetFavoriteModifier(keyStatus[0]?? "LeftAlt"); // If for some reason the status isn't set, set it to LeftAlt.
+				}
+			}
+			catch (Exception e)
+			{
+				ModContent.GetInstance<HiddenSettings>().Logger.Warn($"Error when trying to listen for the favorite modifier key bind: {e}");
 			}
 			orig(triggerName, inputmode); // Calling orig after (instead of before) is important somehow.
 		}

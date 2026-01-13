@@ -1,6 +1,6 @@
-using Newtonsoft.Json;
 using System;
 using System.ComponentModel;
+using Newtonsoft.Json;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameInput;
@@ -36,8 +36,18 @@ namespace HiddenSettings
 			}
 
 			// Reset the mod's Favorite Modifier mod key bind and set it to the real favorite key.
-			PlayerInput.CurrentProfile.InputModes[InputMode.Keyboard].KeyStatus["HiddenSettings/FavoriteModifier"].Clear();
-			PlayerInput.CurrentProfile.InputModes[InputMode.Keyboard].KeyStatus["HiddenSettings/FavoriteModifier"].Add(Main.cFavoriteKey);
+			try
+			{
+				if (PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus["HiddenSettings/FavoriteModifier"]?.Count != 0)
+				{
+					PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus["HiddenSettings/FavoriteModifier"]?.Clear();
+					PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus["HiddenSettings/FavoriteModifier"]?.Add(Main.cFavoriteKey);
+				}
+			}
+			catch (Exception e)
+			{
+				ModContent.GetInstance<HiddenSettings>().Logger.Warn($"Error when trying to reset the mod's favorite key bind after saving the mod config: {e}");
+			}
 
 			Main.SaveSettings();
 
