@@ -79,43 +79,49 @@ Configs: {
 				'''
 		}
 
+		/*
 		HeatDistortion: {
-			Label: Heat Distortion
-			Tooltip:
-				'''
-				Toggles the distortion effect to the screen while in the Desert and Underworld.
-
-				Default value: On
-				'''
+		Label: Heat Distortion
+		Tooltip:
+		'''
+		Toggles the distortion effect to the screen while in the Desert and Underworld.
+		
+		Default value: On
+		'''
 		}
-
+		*/
+		
+		/*
 		StormEffects: {
-			Label: Storm Effects
-			Tooltip:
-				'''
-				Toggles the screen effects seen during a Blizzard or Sandstorm.
-
-				Disabling this may increase performance on low end systems.
-
-				Default value: On
-				'''
+		Label: Storm Effects
+		Tooltip:
+		'''
+		Toggles the screen effects seen during a Blizzard or Sandstorm.
+		
+		Disabling this may increase performance on low end systems.
+		
+		Default value: On
+		'''
 		}
-
+		*/
+		
+		/*
 		WavesQuality: {
-			Label: Waves Quality
-			Tooltip:
-				'''
-				Effects how complex the ripples are in water when something enters it.
-				Low: Passive water distortion; nothing really interacts with it.
-				Medium: Players and most things create ripples as they pass through water.
-				High: Projectiles also create ripples and ripples can bounce off walls.
-
-				This setting has no effect under Retro or Trippy lighting.
-
-				Default value: High
-				'''
+		Label: Waves Quality
+		Tooltip:
+		'''
+		Effects how complex the ripples are in water when something enters it.
+		Low: Passive water distortion; nothing really interacts with it.
+		Medium: Players and most things create ripples as they pass through water.
+		High: Projectiles also create ripples and ripples can bounce off walls.
+		
+		This setting has no effect under Retro or Trippy lighting.
+		
+		Default value: High
+		'''
 		}
-
+		*/
+		
 		HoverControls: {
 			Label: Hover Controls
 			Tooltip:
@@ -124,6 +130,51 @@ Configs: {
 				When set to Click, hovering is enabled by pressing Down, and disabled by pressing Up while flying.
 
 				Default: Hold
+				'''
+		}
+
+		CraftingControlMode: {
+			Label: Crafting Control Mode
+			Tooltip:
+				'''
+				Clicking the hammer next to the crafting output will open a crafting menu or a grid.
+				When set to Modern, the new crafting menu with filter tabs and a search bar will be shown. 
+				When set to Classic, the old crafting grid will be shown. 
+
+				This setting can be changed in game by right clicking the hammer next to the crafting output.
+
+				Default: Modern
+				'''
+		}
+
+		StackToChestsPreferredMode: {
+			Label: Stack To Chests Preferred Mode
+			Tooltip:
+				'''
+				When set to Quick Stack, items from the inventory will be stored in nearby chests if that chest contains that item.
+				When set to Similar Stack, in addition to quick stacking items that are already in the chest,
+				  similar items will also get sent to the chest even if they aren't in the chest.
+
+				For example: The player has iron and copper in their inventory and a chest contains iron.
+				  Quick stacking will only store the iron.
+				  Similar stacking will store both the iron and copper even though the chest didn't contain any copper.
+
+				This setting can be changed in game by right clicking the quick stack to nearby chests button.
+
+				Default: Quick Stack
+				'''
+		}
+
+		CraftFromNearbyChests: {
+			Label: Craft From Nearby Chests
+			Tooltip:
+				'''
+				When set to On, the player can use ingredients from nearby chests to craft items.
+				When set to Off, ingredients in nearby chests cannot be used to craft items. The items must be in the player's inventory.
+
+				This setting can be changed in game by clicking the button under the crafting hammer.
+
+				Default: On
 				'''
 		}
 
@@ -173,16 +224,18 @@ Configs: {
 				'''
 		}
 
+		/*
 		QuickTrash: {
-			Label: Quick Trash
-			Tooltip:
-				'''
-				Whether Quick Trashing is enabled and which key is used for it.
-
-				Default value: Left Control
-				'''
+		Label: Quick Trash
+		Tooltip:
+		'''
+		Whether Quick Trashing is enabled and which key is used for it.
+		
+		Default value: Left Control
+		'''
 		}
-
+		*/
+		
 		AttackSpeedEffectTooltips: {
 			Label: Attack Speed Effect Tooltips
 			Tooltip:
@@ -341,16 +394,18 @@ Configs: {
 				'''
 		}
 
+		/*
 		DisableIntenseVisualEffects: {
-			Label: Disable Intense Visual Effects
-			Tooltip:
-				'''
-				When this is set to true, the flashing effect during Thunderstorms will be disabled.
-
-				Default value: Off
-				'''
+		Label: Disable Intense Visual Effects
+		Tooltip:
+		'''
+		When this is set to true, the flashing effect during Thunderstorms will be disabled.
+		
+		Default value: Off
+		'''
 		}
-
+		*/
+		
 		SettingDontScaleMainMenuUp: {
 			Label: Don't Scale Main Menu Up
 			Tooltip:
@@ -431,6 +486,17 @@ Configs: {
 				Ignores all gamepad input when enabled.
 
 				Default value: Off
+				'''
+		}
+
+		SettingControllerGlyphs: {
+			Label: Display Controller Glyphs
+			Tooltip:
+				'''
+				Displays glyphs at the bottom of the screen for different controller types.
+				The glyphs will be disabled if using a mouse & keyboard no matter the setting chosen.
+
+				Default value: Auto
 				'''
 		}
 
@@ -552,6 +618,23 @@ Configs: {
 				Default value: Off
 				'''
 		}
+
+		LiquidSlopeFix: {
+			Label: Liquid Slope Fix
+			Tooltip:
+				'''
+				tModLoader improves the visuals of liquids while in a sloped block.
+				  Liquids in slopes will flow and create ripples instead of just being colored the liquid color.
+				Turn off to restore vanilla visuals.
+
+				Default value: On
+				'''
+		}
+
+		SecretSeeds: {
+			Label: Unlock All Secret Seeds
+			Tooltip: Click to expand the menu to unlock or clear all saved secret seeds.
+		}
 	}
 
 	SmartDoorsSettings: {
@@ -650,6 +733,55 @@ Configs: {
 		}
 	}
 
+	CraftingGridModeSetting: {
+		Tooltip: ""
+
+		Modern: {
+			Label: Modern
+			Tooltip:
+				'''
+				{$Label}
+				Clicking the hammer next to the crafting output will open the
+				new crafting menu with filter tabs and a search bar. 
+				[c/AAAAAA:(Default value)]
+				'''
+		}
+
+		Classic: {
+			Label: Classic
+			Tooltip:
+				'''
+				{$Label}
+				Clicking the hammer next to the crafting output will open the
+				old crafting grid which only shows what you can craft. 
+				'''
+		}
+	}
+
+	StackToNearbyChestsModeSetting: {
+		Tooltip: ""
+
+		QuickStackToNearbyChests: {
+			Label: Quick Stack
+			Tooltip:
+				'''
+				{$Label}
+				Items from the inventory will be stored in nearby chests if that chest contains that item.
+				[c/AAAAAA:(Default value)]
+				'''
+		}
+
+		SmartStackToNearbyChests: {
+			Label: Similar Stack
+			Tooltip:
+				'''
+				{$Label}
+				In addition to quick stacking items that are already in the chest,
+				similar items will also get sent to the chest even if the chest doesn't contain that item.
+				'''
+		}
+	}
+
 	PasswordsSettings: {
 		Tooltip: ""
 
@@ -673,38 +805,40 @@ Configs: {
 		}
 	}
 
+	/*
 	QuickTrashSettings: {
-		Tooltip: ""
-
-		LeftControl: {
-			Label: Left Control
-			Tooltip:
-				'''
-				{$Label}
-				Quick Trash can be used with left control.
-				[c/AAAAAA:(Default value)]
-				'''
-		}
-
-		LeftShift: {
-			Label: Left Shift
-			Tooltip:
-				'''
-				{$Label}
-				Quick Trash can be used with left shift.
-				'''
-		}
-
-		Disabled: {
-			Label: Disabled
-			Tooltip:
-				'''
-				{$Label}
-				Quick Trash will be disabled.
-				'''
-		}
+	Tooltip: ""
+	
+	LeftControl: {
+	Label: Left Control
+	Tooltip:
+	'''
+	{$Label}
+	Quick Trash can be used with left control.
+	[c/AAAAAA:(Default value)]
+	'''
 	}
-
+	
+	LeftShift: {
+	Label: Left Shift
+	Tooltip:
+	'''
+	{$Label}
+	Quick Trash can be used with left shift.
+	'''
+	}
+	
+	Disabled: {
+	Label: Disabled
+	Tooltip:
+	'''
+	{$Label}
+	Quick Trash will be disabled.
+	'''
+	}
+	}
+	*/
+	
 	AttackSpeedEffectTooltipsSettings: {
 		Tooltip: ""
 
@@ -804,6 +938,51 @@ Configs: {
 	}
 	*/
 	
+	ControllerGlyphsSettings: {
+		Tooltip: ""
+
+		Auto: {
+			Label: Auto
+			Tooltip:
+				'''
+				{$Label}
+				Automatically chooses the correct glyphs based on the controller type.
+				Glyphs will be disable if using mouse & keyboard.
+				[c/AAAAAA:(Default value)]
+				'''
+		}
+
+		Xbox: {
+			Label: Xbox
+			Tooltip:
+				'''
+				{$Label}
+				Xbox glyphs will be shown.
+				Glyphs will be disable if using mouse & keyboard.
+				'''
+		}
+
+		PlayStation: {
+			Label: Play Station
+			Tooltip:
+				'''
+				{$Label}
+				Play Station glyphs will be shown.
+				Glyphs will be disable if using mouse & keyboard.
+				'''
+		}
+
+		Switch: {
+			Label: Switch
+			Tooltip:
+				'''
+				{$Label}
+				Switch glyphs will be shown.
+				Glyphs will be disable if using mouse & keyboard.
+				'''
+		}
+	}
+
 	FlashIconForEventsSettings: {
 		Tooltip: ""
 
@@ -851,6 +1030,29 @@ Configs: {
 				The game's taskbar icon will flash when any of the above events happen.
 				[c/AAAAAA:(Default value)]
 				'''
+		}
+	}
+
+	SecretSeedsSettings: {
+		Tooltip: ""
+
+		SelectAnOption: {
+			Label: Select an option
+			Tooltip:
+				'''
+				Select "Unlock All" to unlock all secret seeds.
+				Select "Clear All" to clear all saved secret seeds.
+				'''
+		}
+
+		UnlockAll: {
+			Label: Unlock All
+			Tooltip: Click to unlock all secret seeds.
+		}
+
+		ClearAll: {
+			Label: Clear All
+			Tooltip: Click to clear all saved secret seeds.
 		}
 	}
 

@@ -1,6 +1,6 @@
 displayName = Hidden Settings
 author = Rijam
-version = 1.2
+version = 2.0
 buildIgnore = .vs\*, obj\*, bin\*, *.xcf, .git\*, git\*, Effects\fxcompiler
 homepage = https://github.com/Rijam/HiddenSettings
 hideCode = false

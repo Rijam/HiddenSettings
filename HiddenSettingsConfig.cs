@@ -1,13 +1,15 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Newtonsoft.Json;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.GameContent.Liquid;
+using Terraria.GameContent.UI.Chat;
 using Terraria.GameInput;
 using Terraria.Graphics.Effects;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
-using Terraria.UI;
 
 namespace HiddenSettings
 {
@@ -38,10 +40,13 @@ namespace HiddenSettings
 			// Reset the mod's Favorite Modifier mod key bind and set it to the real favorite key.
 			try
 			{
-				if (PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus["HiddenSettings/FavoriteModifier"]?.Count != 0)
+				if (PlayerInput.CurrentInputMode != InputMode.Mouse)
 				{
-					PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus["HiddenSettings/FavoriteModifier"]?.Clear();
-					PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus["HiddenSettings/FavoriteModifier"]?.Add(Main.cFavoriteKey);
+					if (PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode]?.KeyStatus["HiddenSettings/FavoriteModifier"]?.Count != 0)
+					{
+						PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus["HiddenSettings/FavoriteModifier"]?.Clear();
+						PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus["HiddenSettings/FavoriteModifier"]?.Add(Main.cFavoriteKey);
+					}
 				}
 			}
 			catch (Exception e)
@@ -61,8 +66,9 @@ namespace HiddenSettings
 			// Main.NewText($"Main.cFavoriteKey {Main.cFavoriteKey} Main.FavoriteKey {Main.FavoriteKey}");
 		}
 
+#pragma warning disable IDE0079 // Remove unnecessary suppression
 #pragma warning disable CA1822 // Mark members as static
-// ModConfig elements cannot be static!
+		// ModConfig elements cannot be static!
 
 		[Header("UsuallyOnlyAvailableInGame")]
 		[JsonIgnore]
@@ -70,7 +76,7 @@ namespace HiddenSettings
 		// [DefaultValue(DoorOpeningHelper.DoorAutoOpeningPreference.EnabledForEverything)]
 		[DefaultValue(SmartDoorsSettings.Enabled)]
 		[DrawTicks]
-		/* // Using the vanilla Enum. Unfortunetly, I couldn't figure out how to change the labels and tooltips in the localization of vanilla enums.
+		/* // Using the vanilla Enum. Unfortunately, I couldn't figure out how to change the labels and tooltips in the localization of vanilla enums.
 		public DoorOpeningHelper.DoorAutoOpeningPreference SmartDoors
 		{
 			get => DoorOpeningHelper.PreferenceSettings;
@@ -145,6 +151,7 @@ namespace HiddenSettings
 			set => Main.SettingsEnabled_OpaqueBoxBehindTooltips = value;
 		}
 
+		/* 1.4.5 Now shown in the main menu, too.
 		[JsonIgnore]
 		[ShowDespiteJsonIgnore]
 		[DefaultValue(true)]
@@ -153,7 +160,9 @@ namespace HiddenSettings
 			get => Main.UseHeatDistortion;
 			set => Main.UseHeatDistortion = value;
 		}
+		*/
 
+		/* 1.4.5 Now shown in the main menu, too.
 		[JsonIgnore]
 		[ShowDespiteJsonIgnore]
 		[DefaultValue(true)]
@@ -162,7 +171,9 @@ namespace HiddenSettings
 			get => Main.UseStormEffects;
 			set => Main.UseStormEffects = value;
 		}
+		*/
 
+		/* 1.4.5 Now shown in the main menu, too.
 		[JsonIgnore]
 		[ShowDespiteJsonIgnore]
 		[DefaultValue(WavesQualitySettings.Off)]
@@ -186,6 +197,7 @@ namespace HiddenSettings
 				Main.WaveQuality = newValue;
 			}
 		}
+		*/
 
 		[JsonIgnore]
 		[ShowDespiteJsonIgnore]
@@ -203,6 +215,33 @@ namespace HiddenSettings
 		{
 			get => (HoverControlModeSettings)Player.Settings.HoverControl;
 			set => Player.Settings.HoverControl = (Player.Settings.HoverControlMode)value;
+		}
+
+		[JsonIgnore]
+		[ShowDespiteJsonIgnore]
+		[DefaultValue(CraftingGridModeSetting.Modern)]
+		public CraftingGridModeSetting CraftingControlMode
+		{
+			get => (CraftingGridModeSetting)Player.Settings.CraftingGridControl;
+			set => Player.Settings.CraftingGridControl = (Player.Settings.CraftingGridMode)value;
+		}
+
+		[JsonIgnore]
+		[ShowDespiteJsonIgnore]
+		[DefaultValue(StackToNearbyChestsModeSetting.QuickStackToNearbyChests)]
+		public StackToNearbyChestsModeSetting StackToChestsPreferredMode
+		{
+			get => (StackToNearbyChestsModeSetting)Player.Settings.StackToChestsPreferredMode;
+			set => Player.Settings.StackToChestsPreferredMode = (Player.Settings.StackToNearbyChestsMode)value;
+		}
+
+		[JsonIgnore]
+		[ShowDespiteJsonIgnore]
+		[DefaultValue(true)]
+		public bool CraftFromNearbyChests
+		{
+			get => Player.Settings.CraftFromNearbyChests;
+			set => Player.Settings.CraftFromNearbyChests = value;
 		}
 
 		[Header("UsuallyOnlyAvailableOnMainMenu")]
@@ -264,6 +303,7 @@ namespace HiddenSettings
 			set => Main.SettingsEnabled_MinersWobble = value;
 		}
 
+		/* 1.4.5 now shown in game, too.
 		[JsonIgnore]
 		[ShowDespiteJsonIgnore]
 		[DefaultValue(QuickTrashSettings.LeftControl)]
@@ -305,6 +345,7 @@ namespace HiddenSettings
 				}
 			}
 		}
+		*/
 
 		[JsonIgnore]
 		[ShowDespiteJsonIgnore]
@@ -468,14 +509,16 @@ namespace HiddenSettings
 			set => Main.instance.waterfallManager.maxWaterfallCount = value;
 		}
 
+		/* 1.4.5 Now called Thunder Effects. Shown in game and in main menu.
 		[JsonIgnore]
 		[ShowDespiteJsonIgnore]
 		[DefaultValue(false)]
 		public bool DisableIntenseVisualEffects
 		{
-			get => Main.DisableIntenseVisualEffects;
-			set => Main.DisableIntenseVisualEffects = value;
+			get => Main.FlashyEffectsWorld;
+			set => Main.FlashyEffectsWorld = value;
 		}
+		*/
 
 		[JsonIgnore]
 		[ShowDespiteJsonIgnore]
@@ -549,6 +592,15 @@ namespace HiddenSettings
 		{
 			get => Main.SettingBlockGamepadsEntirely;
 			set => Main.SettingBlockGamepadsEntirely = value;
+		}
+
+		[JsonIgnore]
+		[ShowDespiteJsonIgnore]
+		[DefaultValue(-1)]
+		public ControllerGlyphsSettings SettingControllerGlyphs
+		{
+			get => (ControllerGlyphsSettings)GlyphTagHandler.GlyphStyle;
+			set => GlyphTagHandler.GlyphStyle = (int)value;
 		}
 
 		[JsonIgnore]
@@ -666,7 +718,88 @@ namespace HiddenSettings
 			set => Main.SkipAssemblyLoad = value;
 		}
 
+		[JsonIgnore]
+		[ShowDespiteJsonIgnore]
+		[DefaultValue(true)]
+		public bool LiquidSlopeFix // Setting added by tModLoader
+		{
+			get => LiquidEdgeRenderer.Enabled;
+			set => LiquidEdgeRenderer.Enabled = value;
+		}
+
+		[JsonIgnore]
+		[ShowDespiteJsonIgnore]
+		[DefaultValue(SecretSeedsSettings.SelectAnOption)]
+		public SecretSeedsSettings SecretSeeds
+		{
+			get => SecretSeedsSettings.SelectAnOption; // Do nothing.
+			set
+			{
+				switch (value)
+				{
+					case SecretSeedsSettings.UnlockAll:
+						Reflected.GetSet_SecretSeedsTracker__processedConfig(false); // Set _processedConfig to false so that the secret seed menu can regenerate when opened.
+						Reflected.GetSet_SecretSeedsTracker__seedsForConfig(clear: true); // Clear the lists that store what seeds are unlocked.
+						Reflected.GetSet_SecretSeedsTracker__seedsForInterface(clear: true);
+						SecretSeedsTracker.SetstringsFromConfig(secretSeedsList); // Set the config list to all of the seeds.
+						Main.SaveSettings(); // Save the settings right after. Even though OnChanged() saves the config, this needs to be done here, too.
+						break;
+					case SecretSeedsSettings.ClearAll:
+						Reflected.GetSet_SecretSeedsTracker__processedConfig(false); // Set _processedConfig to false so that the secret seed menu can regenerate when opened.
+						Reflected.GetSet_SecretSeedsTracker__seedsForConfig(clear: true); // Clear the lists that store what seeds are unlocked.
+						Reflected.GetSet_SecretSeedsTracker__seedsForInterface(clear: true);
+						Main.SaveSettings(); // Save the settings right after. Even though OnChanged() saves the config, this needs to be done here, too.
+						break;
+					default:
+						break;
+				}
+			}
+		}
+
+		/// <summary>
+		/// All of the secret seeds.
+		/// </summary>
+		private static readonly List<string> secretSeedsList =
+		[
+			"Abandoned manors",
+			"Arachnophobia",
+			"Beam me up",
+			"Bring a towel",
+			"Does that sparkle",
+			"Double daring dangers",
+			"Fish Mox",
+			"Hocus pocus",
+			"How did I get here",
+			"I am error",
+			"Invisible plane",
+			"Jagged rocks",
+			"Jingle all the way",
+			"Mole people",
+			"Monochrome",
+			"More traps please",
+			"Negative infinity",
+			"Night of the Living Dead",
+			"Planetoids",
+			"Pumpkin season",
+			"Purify this",
+			"Rainbow Road",
+			"Royale with cheese",
+			"Sandy britches",
+			"Save the rainforest",
+			"Such great heights",
+			"The Care Bears Movie",
+			"Toadstool",
+			"Too easy",
+			"Truck stop",
+			"Waterpark",
+			"We dont even test for that",
+			"What a horrible night to have a curse",
+			"Winter is coming",
+			"Xray vision"
+		];
+
 #pragma warning restore CA1822 // Mark members as static
+#pragma warning restore IDE0079 // Remove unnecessary suppression
 
 		public enum SmartDoorsSettings
 		{ 
@@ -675,6 +808,7 @@ namespace HiddenSettings
 			Enabled
 		}
 
+		/*
 		public enum WavesQualitySettings
 		{
 			Off,
@@ -682,6 +816,7 @@ namespace HiddenSettings
 			Medium,
 			High
 		}
+		*/
 
 		public enum HoverControlModeSettings
 		{
@@ -689,18 +824,31 @@ namespace HiddenSettings
 			Click
 		}
 
+		public enum CraftingGridModeSetting
+		{
+			Modern,
+			Classic
+		}
+
+		public enum StackToNearbyChestsModeSetting : byte
+		{
+			QuickStackToNearbyChests,
+			SmartStackToNearbyChests
+		}
+
 		public enum PasswordsSettings
 		{
 			Visible,
 			Hidden
 		}
-
+		/*
 		public enum QuickTrashSettings
 		{
 			LeftControl,
 			LeftShift,
 			Disabled
 		}
+		*/
 		public enum AttackSpeedEffectTooltipsSettings
 		{
 			ShowAll,
@@ -729,6 +877,15 @@ namespace HiddenSettings
 		}
 		*/
 
+		public enum ControllerGlyphsSettings
+		{
+			Auto = -1,
+			Xbox = 0,
+			PlayStation = 1,
+			Switch = 2
+		}
+
+
 		[Flags] // Treat each enum as a bit instead of a int.
 		public enum FlashIconForEventsSettings
 		{
@@ -737,6 +894,13 @@ namespace HiddenSettings
 			SpawnOrDeath = 2,
 			WorldGen = 4,
 			All = 7,
-		} 
+		}
+		
+		public enum SecretSeedsSettings
+		{
+			SelectAnOption,
+			UnlockAll,
+			ClearAll
+		}
 	}
 }

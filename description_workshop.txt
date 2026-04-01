@@ -12,10 +12,10 @@ These settings normally require you to join a world to change. This mod lets you
 [*] UI Scale
 [*] Map Scale
 [*] Hover Text Boxes
-[*] Heat Distortion
-[*] Storm Effects
-[*] Waves Quality
 [*] Hover Controls
+[*] Crafting Control Mode
+[*] Stack To Chests Preferred Mode
+[*] Craft From Nearby Chests
 [/list]
 
 [hr][/hr]
@@ -26,7 +26,6 @@ These settings normally only accessible on the main menu and cannot be changed w
 [*] Passwords
 [*] Borderless Window
 [*] Miners Wobble
-[*] Quick Trash
 [*] Attack Speed Effect Tooltips
 [*] Remove Forced Minimum Zoom
 [/list]
@@ -46,7 +45,6 @@ Most of these settings are hidden within the game's config.json
 [*] Multiplayer NPC Smoothing Range
 [*] Team Nameplate Distance
 [*] Waterfall Draw Limit
-[*] Disable Intense Visual Effects
 [*] Don't Scale Main Menu Up
 [*] Filter Limit
 [*] Filter Priority Threshold
@@ -54,6 +52,7 @@ Most of these settings are hidden within the game's config.json
 [*] Support 8K
 [*] World Rollbacks To Keep
 [*] Block Gamepads Entirely
+[*] Display Controller Glyphs
 [*] Favorite Modifier Key (can also be changed in the controls menu)
 [*] Flash Icon For Events
 [*] Cloud Saving Default
@@ -64,4 +63,6 @@ Most of these settings are hidden within the game's config.json
 [*] Use Steel Series RGB
 [*] RGB Updates Per Second
 [*] Quick Launch
+[*] Liquid Slope Fix
+[*] Unlock All Secret Seeds (Quickly unlock or clear all saved secret seeds)
 [/list]

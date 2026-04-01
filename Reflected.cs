@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
 using Terraria.GameContent;
@@ -214,5 +215,70 @@ namespace HiddenSettings
 			return (string)property.GetValue(instance);
 		}
 		*/
+
+		/// <summary>
+		/// The list that contains what secret seeds were read from the config file.
+		/// </summary>
+		/// <param name="newValue"></param>
+		/// <param name="clear">Set to true to clear the list.</param>
+		/// <returns></returns>
+		public static List<string> GetSet_SecretSeedsTracker__seedsForConfig(List<string>? newValue = null, bool clear = false)
+		{
+			FieldInfo field = typeof(Terraria.GameContent.SecretSeedsTracker).GetField("_seedsForConfig", BindingFlags.NonPublic | BindingFlags.Static);
+
+			if (newValue != null)
+			{
+				field.SetValue(Main.instance, newValue);
+			}
+			if (clear)
+			{
+				List<string> theList = (List<string>)field.GetValue(Main.instance);
+				theList.Clear();
+				field.SetValue(Main.instance, theList);
+			}
+
+			return (List<string>)field.GetValue(Main.instance);
+		}
+
+		/// <summary>
+		/// The list that contains what secret seeds are available to choose from in the secret seed menu.
+		/// </summary>
+		/// <param name="newValue"></param>
+		/// <param name="clear">Set to true to clear the list.</param>
+		/// <returns></returns>
+		public static List<WorldGen.SecretSeed> GetSet_SecretSeedsTracker__seedsForInterface(List<WorldGen.SecretSeed>? newValue = null, bool clear = false)
+		{
+			FieldInfo field = typeof(Terraria.GameContent.SecretSeedsTracker).GetField("_seedsForInterface", BindingFlags.NonPublic | BindingFlags.Static);
+
+			if (newValue != null)
+			{
+				field.SetValue(Main.instance, newValue);
+			}
+			if (clear)
+			{
+				List<WorldGen.SecretSeed> theList = (List<WorldGen.SecretSeed>)field.GetValue(Main.instance);
+				theList.Clear();
+				field.SetValue(Main.instance, theList);
+			}
+
+			return (List<WorldGen.SecretSeed>)field.GetValue(Main.instance);
+		}
+
+		/// <summary>
+		/// Determines whether the secret seed menu should regenerate itself after reading the config values.
+		/// </summary>
+		/// <param name="newValue"></param>
+		/// <returns></returns>
+		public static bool GetSet_SecretSeedsTracker__processedConfig(bool? newValue = null)
+		{
+			FieldInfo field = typeof(Terraria.GameContent.SecretSeedsTracker).GetField("_processedConfig", BindingFlags.NonPublic | BindingFlags.Static);
+
+			if (newValue != null)
+			{
+				field.SetValue(Main.instance, newValue);
+			}
+
+			return (bool)field.GetValue(Main.instance);
+		}
 	}
 }
