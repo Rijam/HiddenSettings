@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using Newtonsoft.Json;
 using Terraria;
 using Terraria.GameContent;
@@ -40,12 +41,24 @@ namespace HiddenSettings
 			// Reset the mod's Favorite Modifier mod key bind and set it to the real favorite key.
 			try
 			{
-				if (PlayerInput.CurrentInputMode != InputMode.Mouse)
+#if DEBUG
+				ModContent.GetInstance<HiddenSettings>().Logger.Debug($"Config: The input mode was {PlayerInput.CurrentInputMode}.");
+#endif
+				if (PlayerInput.CurrentProfile.InputModes.ContainsKey(PlayerInput.CurrentInputMode))
 				{
-					if (PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode]?.KeyStatus["HiddenSettings/FavoriteModifier"]?.Count != 0)
+					if (PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus.ContainsKey("HiddenSettings/FavoriteModifier"))
 					{
-						PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus["HiddenSettings/FavoriteModifier"]?.Clear();
-						PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus["HiddenSettings/FavoriteModifier"]?.Add(Main.cFavoriteKey);
+#if DEBUG
+						ModContent.GetInstance<HiddenSettings>().Logger.Debug($"Config: {PlayerInput.CurrentInputMode}.KeyStatus contained HiddenSettings/FavoriteModifier");
+#endif
+						if (PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus["HiddenSettings/FavoriteModifier"]?.Count != 0)
+						{
+							PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus["HiddenSettings/FavoriteModifier"]?.Clear();
+							PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus["HiddenSettings/FavoriteModifier"]?.Add(Main.cFavoriteKey);
+#if DEBUG
+							ModContent.GetInstance<HiddenSettings>().Logger.Debug($"Config: The count was not 0. Cleared and added. {PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus["HiddenSettings/FavoriteModifier"].LastOrDefault()}");
+#endif
+						}
 					}
 				}
 			}
