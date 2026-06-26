@@ -56,3 +56,4 @@ Most of these settings are hidden within the game's config.json
 - Use Steel Series RGB
 - RGB Updates Per Second
 - Quick Launch
+- Liquid Slope Fix

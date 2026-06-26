@@ -552,6 +552,18 @@ Configs: {
 				Default value: Off
 				'''
 		}
+
+		LiquidSlopeFix: {
+			Label: Liquid Slope Fix
+			Tooltip:
+				'''
+				tModLoader improves the visuals of liquids while in a sloped block.
+				  Liquids in slopes will flow and create ripples instead of just being colored the liquid color.
+				Turn off to restore vanilla visuals.
+
+				Default value: On
+				'''
+		}
 	}
 
 	SmartDoorsSettings: {

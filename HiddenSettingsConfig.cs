@@ -1,8 +1,10 @@
 using System;
 using System.ComponentModel;
+using System.Linq;
 using Newtonsoft.Json;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.GameContent.Liquid;
 using Terraria.GameInput;
 using Terraria.Graphics.Effects;
 using Terraria.ModLoader;
@@ -38,10 +40,25 @@ namespace HiddenSettings
 			// Reset the mod's Favorite Modifier mod key bind and set it to the real favorite key.
 			try
 			{
-				if (PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus["HiddenSettings/FavoriteModifier"]?.Count != 0)
+#if DEBUG
+				ModContent.GetInstance<HiddenSettings>().Logger.Debug($"Config: The input mode was {PlayerInput.CurrentInputMode}.");
+#endif
+				if (PlayerInput.CurrentProfile.InputModes.ContainsKey(PlayerInput.CurrentInputMode))
 				{
-					PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus["HiddenSettings/FavoriteModifier"]?.Clear();
-					PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus["HiddenSettings/FavoriteModifier"]?.Add(Main.cFavoriteKey);
+					if (PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus.ContainsKey("HiddenSettings/FavoriteModifier"))
+					{
+#if DEBUG
+						ModContent.GetInstance<HiddenSettings>().Logger.Debug($"Config: {PlayerInput.CurrentInputMode}.KeyStatus contained HiddenSettings/FavoriteModifier");
+#endif
+						if (PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus["HiddenSettings/FavoriteModifier"]?.Count != 0)
+						{
+							PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus["HiddenSettings/FavoriteModifier"]?.Clear();
+							PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus["HiddenSettings/FavoriteModifier"]?.Add(Main.cFavoriteKey);
+#if DEBUG
+							ModContent.GetInstance<HiddenSettings>().Logger.Debug($"Config: The count was not 0. Cleared and added. {PlayerInput.CurrentProfile.InputModes[PlayerInput.CurrentInputMode].KeyStatus["HiddenSettings/FavoriteModifier"].LastOrDefault()}");
+#endif
+						}
+					}
 				}
 			}
 			catch (Exception e)
@@ -664,6 +681,15 @@ namespace HiddenSettings
 		{
 			get => Main.SkipAssemblyLoad;
 			set => Main.SkipAssemblyLoad = value;
+		}
+
+		[JsonIgnore]
+		[ShowDespiteJsonIgnore]
+		[DefaultValue(true)]
+		public bool LiquidSlopeFix // Setting added by tModLoader
+		{
+			get => LiquidEdgeRenderer.Enabled;
+			set => LiquidEdgeRenderer.Enabled = value;
 		}
 
 #pragma warning restore CA1822 // Mark members as static
