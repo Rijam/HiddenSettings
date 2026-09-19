@@ -731,6 +731,24 @@ Configs: {
 				Hovering is enabled by pressing Down, and disabled by pressing Up while flying.
 				'''
 		}
+
+		OnAlways: {
+			Label: Always On
+			Tooltip:
+				'''
+				{$Label}
+				Hovering is always enabled.
+				'''
+		}
+
+		OffAlways: {
+			Label: Always Off
+			Tooltip:
+				'''
+				{$Label}
+				Hovering is disabled.
+				'''
+		}
 	}
 
 	CraftingGridModeSetting: {

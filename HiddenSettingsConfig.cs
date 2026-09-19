@@ -227,7 +227,7 @@ namespace HiddenSettings
 		public HoverControlModeSettings HoverControls
 		{
 			get => (HoverControlModeSettings)Player.Settings.HoverControl;
-			set => Player.Settings.HoverControl = (Player.Settings.HoverControlMode)value;
+			set => Player.Settings.HoverControl = (Terraria.ButtonControlMode)value;
 		}
 
 		[JsonIgnore]
@@ -778,8 +778,10 @@ namespace HiddenSettings
 			"Arachnophobia",
 			"Beam me up",
 			"Bring a towel",
+			"Calm before the storm",
 			"Does that sparkle",
 			"Double daring dangers",
+			"Electric Boogaloo",
 			"Fish Mox",
 			"Hocus pocus",
 			"How did I get here",
@@ -834,7 +836,9 @@ namespace HiddenSettings
 		public enum HoverControlModeSettings
 		{
 			Hold,
-			Click
+			Click,
+			OnAlways,
+			OffAlways
 		}
 
 		public enum CraftingGridModeSetting
